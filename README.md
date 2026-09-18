@@ -176,6 +176,62 @@ matching rather than being skipped.
 
 ---
 
+## Device Connection
+
+Dynamic Analysis needs a real device or emulator connected over ADB before you run
+it. This isn't exposed as a CLI command — it's driven from the **Devices** page
+(`DeviceConnectionManager`) — but the underlying `adb` calls are documented here for
+anyone scripting around the GUI or troubleshooting a failed connection.
+
+### USB (default)
+
+1. On the device: **Settings → About phone → tap Build number 7×** to unlock
+   Developer options, then **Developer options → USB debugging → ON**.
+2. Plug in via USB and accept the **"Allow USB debugging?"** prompt on the device.
+3. In Pentroid: **Devices → Scan for Devices**. This runs `adb devices -l` and
+   syncs whatever it finds into the device table.
+
+If nothing appears, check manually:
+```bash
+adb start-server
+adb devices -l
+```
+State should read `device` — `unauthorized` means the RSA prompt wasn't accepted
+on-device yet, `offline` means replug the cable.
+
+### Wireless
+
+Use **Devices → Connect Wirelessly**, which handles both flows explicitly since
+they use different ports and are a common source of confusion:
+
+**Android 11+ (Wireless debugging — no cable required):**
+```bash
+adb pair <ip>:<pairing_port> <6-digit-code>
+adb connect <ip>:<connect_port>
+```
+Pairing port + code and the separate connect port are both shown under
+**Developer options → Wireless debugging** on the device. The pairing port and
+connect port are *not* the same port.
+
+**Pre-Android 11 (legacy — no pairing):**
+```bash
+adb tcpip 5555          # once, over USB
+adb connect <ip>:5555   # then unplug the cable
+```
+
+> `adb connect` exits `0` even when the connection fails ("failed to connect to
+> ..." shows up in stdout instead) — Pentroid checks the output text for
+> `"connected to"` rather than trusting the exit code, and anything scripting
+> around this should do the same.
+
+### After connecting
+
+Click **Run Setup Wizard** on the device's row to chain root check → Frida server
+push/start → proxy setup in one guided flow before running
+`dynamic_analysis_default`.
+
+---
+
 ## Usage
 
 **1. Create a project and pick a workflow.** Every analysis page (Android APK,
