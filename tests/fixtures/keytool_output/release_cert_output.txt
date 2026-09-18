@@ -1,0 +1,25 @@
+Signer #1:
+
+Certificate #1:
+Owner: CN=MyCompany Release, O=MyCompany, C=US
+Issuer: CN=MyCompany Release, O=MyCompany, C=US
+Serial number: e4d33e768f2859ca
+Valid from: Sun Jul 26 17:10:21 UTC 2026 until: Thu Jul 20 17:10:21 UTC 2051
+Certificate fingerprints:
+	 SHA1: BC:C7:F8:DF:7A:3E:55:3F:3A:D1:04:99:42:70:E2:BE:A6:CE:9E:9C
+	 SHA256: 96:C2:B3:D0:1F:AD:67:65:C7:A8:F6:FC:26:C9:D6:A2:CB:33:61:B6:35:53:96:DE:C3:22:7E:C5:AC:B6:96:2B
+Signature algorithm name: SHA256withRSA
+Subject Public Key Algorithm: 2048-bit RSA key
+Version: 3
+
+Extensions: 
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 76 15 AF 93 29 2C 67 09   58 22 BF 84 4C 85 C2 15  v...),g.X"..L...
+0010: 77 D0 FE F7                                        w...
+]
+]
+
+

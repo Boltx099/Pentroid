@@ -1,0 +1,25 @@
+Signer #1:
+
+Certificate #1:
+Owner: CN=Weak Test, O=Test, C=US
+Issuer: CN=Weak Test, O=Test, C=US
+Serial number: 9b86e00a4eccb6ac
+Valid from: Sun Jul 26 17:10:34 UTC 2026 until: Wed Jul 23 17:10:34 UTC 2036
+Certificate fingerprints:
+	 SHA1: 7C:9D:19:83:CE:F7:C7:DE:28:E5:44:73:D5:5F:34:CE:05:42:5F:FC
+	 SHA256: F8:51:3C:1B:94:4A:3E:BD:38:74:5D:59:F5:B3:8F:2B:DF:3C:48:BD:5D:34:EB:E3:F1:78:43:07:02:0F:5C:6D
+Signature algorithm name: SHA1withRSA (weak)
+Subject Public Key Algorithm: 1024-bit RSA key (weak)
+Version: 3
+
+Extensions: 
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 71 2D 12 DF 77 04 F8 5E   3D 0C D4 F9 87 56 B2 2A  q-..w..^=....V.*
+0010: 70 F1 BF 08                                        p...
+]
+]
+
+

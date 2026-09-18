@@ -1,0 +1,9 @@
+{
+  "plugin_id": "frida_instrumentation",
+  "name": "Frida Runtime Instrumentation",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Spawns the target app under Frida instrumentation and applies standard runtime hooks (SSL/TLS pinning bypass observation, root-detection check observation) -- requires a connected device with frida-server running.",
+  "entry_point": "plugin:FridaInstrumentationPlugin",
+  "requires_device": true
+}

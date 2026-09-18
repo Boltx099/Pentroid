@@ -1,0 +1,9 @@
+{
+  "plugin_id": "tracker_detection",
+  "name": "Tracker & SDK Detection",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Detects known third-party analytics, advertising, and tracking SDKs present in the decompiled package structure.",
+  "entry_point": "plugin:TrackerDetectionPlugin",
+  "requires_device": false
+}

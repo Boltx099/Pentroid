@@ -1,0 +1,9 @@
+{
+  "plugin_id": "logcat_capture",
+  "name": "Logcat Capture & Analysis",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Captures device logcat output for a bounded duration while the app runs, flagging crashes/exceptions and any secrets logged at runtime.",
+  "entry_point": "plugin:LogcatCapturePlugin",
+  "requires_device": true
+}

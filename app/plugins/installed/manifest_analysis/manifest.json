@@ -1,0 +1,9 @@
+{
+  "plugin_id": "manifest_analysis",
+  "name": "Manifest Analysis",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Parses the decoded AndroidManifest.xml for dangerous permissions, exported components without protection, debuggable builds, and backup configuration.",
+  "entry_point": "plugin:ManifestAnalysisPlugin",
+  "requires_device": false
+}

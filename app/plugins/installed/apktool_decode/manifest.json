@@ -1,0 +1,9 @@
+{
+  "plugin_id": "apktool_decode",
+  "name": "APKTool Decode",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Decodes an APK's compiled resources and binary AndroidManifest.xml into readable XML/smali using APKTool, so later steps (Manifest Analysis) can parse it.",
+  "entry_point": "plugin:ApktoolDecodePlugin",
+  "requires_device": false
+}

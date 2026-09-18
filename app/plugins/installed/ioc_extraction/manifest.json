@@ -1,0 +1,9 @@
+{
+  "plugin_id": "ioc_extraction",
+  "name": "IOC Extraction",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Extracts URLs, IP addresses, and domain names from decompiled source as indicators of compromise for threat-intel correlation.",
+  "entry_point": "plugin:IocExtractionPlugin",
+  "requires_device": false
+}

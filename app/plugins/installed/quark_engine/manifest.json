@@ -1,0 +1,9 @@
+{
+  "plugin_id": "quark_engine",
+  "name": "Quark-Engine Scan",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Runs Quark-Engine's five-stage behavioral scoring analysis against the raw APK to detect known malicious behavior patterns (crimes).",
+  "entry_point": "plugin:QuarkEnginePlugin",
+  "requires_device": false
+}

@@ -1,0 +1,9 @@
+{
+  "plugin_id": "apkid_scan",
+  "name": "APKiD Scan",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Runs APKiD against the raw APK to detect compilers, packers, obfuscators, and anti-VM/anti-debug techniques.",
+  "entry_point": "plugin:ApkidScanPlugin",
+  "requires_device": false
+}

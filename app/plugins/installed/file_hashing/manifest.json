@@ -1,0 +1,9 @@
+{
+  "plugin_id": "file_hashing",
+  "name": "File Hashing",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Computes MD5/SHA1/SHA256 hashes and basic file metadata for the target sample -- first step of Malware Analysis (sample identification/triage).",
+  "entry_point": "plugin:FileHashingPlugin",
+  "requires_device": false
+}

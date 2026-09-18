@@ -1,0 +1,25 @@
+Signer #1:
+
+Certificate #1:
+Owner: CN=Expired Test, O=Test, C=US
+Issuer: CN=Expired Test, O=Test, C=US
+Serial number: 119425987392cc39
+Valid from: Tue Jul 26 17:10:24 UTC 2016 until: Wed Jul 27 17:10:24 UTC 2016
+Certificate fingerprints:
+	 SHA1: 39:48:AD:65:A0:B1:2C:61:D1:50:CF:12:F0:EF:81:0B:61:20:21:8F
+	 SHA256: DD:84:AF:24:74:33:C8:B8:A0:9C:94:F8:32:05:5A:24:C2:96:32:C2:7A:DE:9B:2C:D6:9B:CA:68:4E:20:E3:DC
+Signature algorithm name: SHA384withRSA
+Subject Public Key Algorithm: 2048-bit RSA key
+Version: 3
+
+Extensions: 
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: 30 D1 BB BA 4F ED 5E BC   00 2E 6E 47 D2 5F 1D 64  0...O.^...nG._.d
+0010: D9 8D 1A F0                                        ....
+]
+]
+
+

@@ -1,0 +1,9 @@
+{
+  "plugin_id": "mitre_attack_mapping",
+  "name": "MITRE ATT&CK Mapping",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Maps requested dangerous permissions to MITRE ATT&CK for Mobile Collection-tactic techniques.",
+  "entry_point": "plugin:MitreAttackMappingPlugin",
+  "requires_device": false
+}

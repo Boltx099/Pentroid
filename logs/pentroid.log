@@ -1,0 +1,25 @@
+2026-09-18 14:57:05 | INFO     | pentroid                     | Logging initialized (level=INFO, file=/home/boltx/Downloads/Pentroid_pro/Pentroid/logs/pentroid.log)
+2026-09-18 14:57:05 | INFO     | pentroid.__main__            | Starting Pentroid v3.2.0 (theme=dark)
+2026-09-18 14:57:05 | INFO     | pentroid.app.database.database | Database engine created at /home/boltx/Downloads/Pentroid_pro/Pentroid/database/pentroid.db
+2026-09-18 14:57:05 | INFO     | pentroid.app.database.database | Database schema initialized (8 tables)
+2026-09-18 14:57:05 | INFO     | pentroid.__main__            | Foundation layer ready: config OK, logging OK, database OK
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'apk_validator' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'apkid_scan' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'apktool_decode' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'app_deployment' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'certificate_analysis' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'code_analysis' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'file_hashing' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'frida_instrumentation' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'ioc_extraction' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'jadx_decompile' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'logcat_capture' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'manifest_analysis' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'mitre_attack_mapping' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'network_security_config' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'quark_engine' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'secrets_detection' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'tracker_detection' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'virustotal_lookup' v1.0.0
+2026-09-18 14:57:06 | INFO     | pentroid.app.core.workflow.plugin_manager | Discovered plugin 'yara_scan' v1.0.0
+2026-09-18 14:57:07 | INFO     | pentroid.__main__            | All 22 sidebar destinations have a registered page

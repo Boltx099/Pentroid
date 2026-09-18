@@ -1,0 +1,9 @@
+{
+  "plugin_id": "virustotal_lookup",
+  "name": "VirusTotal Lookup",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Looks up the sample's SHA256 hash against VirusTotal's file intelligence database (API v3). Requires an API key configured in Settings.",
+  "entry_point": "plugin:VirusTotalLookupPlugin",
+  "requires_device": false
+}

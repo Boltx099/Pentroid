@@ -1,0 +1,9 @@
+{
+  "plugin_id": "code_analysis",
+  "name": "Code Analysis",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Scans decompiled Java/Kotlin source for insecure coding patterns: weak crypto, WebView misconfiguration, TrustManager/HostnameVerifier bypass, insecure file permissions, sensitive-data logging, and cleartext URLs.",
+  "entry_point": "plugin:CodeAnalysisPlugin",
+  "requires_device": false
+}

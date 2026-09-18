@@ -1,0 +1,9 @@
+{
+  "plugin_id": "certificate_analysis",
+  "name": "Certificate Analysis",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Inspects the APK's signing certificate (via keytool) for debug-signing, weak signature algorithm or key size, and expiry.",
+  "entry_point": "plugin:CertificateAnalysisPlugin",
+  "requires_device": false
+}

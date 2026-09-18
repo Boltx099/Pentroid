@@ -1,0 +1,9 @@
+{
+  "plugin_id": "jadx_decompile",
+  "name": "JADX Decompile",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Decompiles APK DEX bytecode into readable Java source using JADX, for downstream secrets/code analysis.",
+  "entry_point": "plugin:JadxDecompilePlugin",
+  "requires_device": false
+}

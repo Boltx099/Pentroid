@@ -1,0 +1,9 @@
+{
+  "plugin_id": "app_deployment",
+  "name": "App Deployment",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Installs the target APK on the selected device and launches it -- first real device-interaction step of Dynamic Analysis.",
+  "entry_point": "plugin:AppDeploymentPlugin",
+  "requires_device": true
+}

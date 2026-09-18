@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pentroid Security Assessment - {{ project.name }}</title>
+<style>
+    :root {
+        --bg:#0b0f17; --panel:#121826; --panel-2:#171f30; --border:#243044;
+        --text:#e8edf7; --muted:#94a3b8; --dim:#64748b;
+        --crit:#f43f5e; --high:#fb7185; --med:#f59e0b; --low:#38bdf8; --info:#94a3b8;
+        --ok:#34d399;
+    }
+    * { box-sizing:border-box; }
+    body { background:var(--bg); color:var(--text); margin:0;
+           font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+           line-height:1.65; font-size:14px; }
+    .wrap { max-width:1080px; margin:0 auto; padding:40px 28px 80px; }
+
+    /* Cover */
+    .cover { border-bottom:2px solid var(--border); padding-bottom:28px; margin-bottom:36px; }
+    .brand { font-size:13px; letter-spacing:3px; color:var(--ok); font-weight:700; }
+    .cover h1 { font-size:30px; margin:10px 0 6px; font-weight:700; }
+    .cover .sub { color:var(--muted); font-size:14px; }
+    .meta-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+                 gap:12px; margin-top:26px; }
+    .meta { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:13px 15px; }
+    .meta .k { font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--dim); font-weight:700; }
+    .meta .v { font-size:17px; font-weight:700; margin-top:5px; }
+
+    h2 { font-size:12px; text-transform:uppercase; letter-spacing:2px; color:var(--muted);
+         border-bottom:1px solid var(--border); padding-bottom:9px; margin:44px 0 20px; }
+
+    /* Severity distribution */
+    .dist { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
+    .pill { border:1px solid var(--border); border-radius:8px; padding:9px 14px; background:var(--panel);
+            font-size:12px; font-weight:700; display:flex; align-items:center; gap:8px; }
+    .dot { width:9px; height:9px; border-radius:50%; display:inline-block; }
+
+    table.summary { width:100%; border-collapse:collapse; margin-bottom:10px; font-size:13px; }
+    table.summary th { text-align:left; font-size:10px; text-transform:uppercase; letter-spacing:1px;
+                       color:var(--dim); border-bottom:1px solid var(--border); padding:9px 10px; }
+    table.summary td { padding:10px; border-bottom:1px solid var(--border); }
+    table.summary tr:hover td { background:var(--panel); }
+    .sev-tag { font-size:10px; font-weight:800; padding:3px 9px; border-radius:20px;
+               text-transform:uppercase; letter-spacing:.5px; white-space:nowrap; }
+
+    /* Finding detail */
+    .finding { background:var(--panel); border:1px solid var(--border); border-left-width:4px;
+               border-radius:12px; padding:22px 24px; margin-bottom:20px; }
+    .finding.critical{border-left-color:var(--crit)} .finding.high{border-left-color:var(--high)}
+    .finding.medium{border-left-color:var(--med)} .finding.low{border-left-color:var(--low)}
+    .finding.info{border-left-color:var(--info)}
+    .f-head { display:flex; justify-content:space-between; gap:16px; align-items:flex-start; }
+    .f-id { font-size:11px; color:var(--dim); font-weight:700; letter-spacing:1px; }
+    .f-title { font-size:17px; font-weight:700; margin:3px 0 0; }
+    .f-tags { display:flex; flex-wrap:wrap; gap:6px; margin:13px 0 4px; }
+    .tag { font-size:10px; background:var(--panel-2); border:1px solid var(--border); color:var(--muted);
+           padding:3px 9px; border-radius:6px; font-weight:600; }
+    .sect { margin-top:17px; }
+    .sect h4 { font-size:10px; text-transform:uppercase; letter-spacing:1.4px; color:var(--dim);
+               margin:0 0 6px; font-weight:800; }
+    .sect p { margin:0; color:#cbd5e1; }
+    pre { background:#0a0e16; border:1px solid var(--border); border-radius:8px; padding:13px 15px;
+          overflow-x:auto; font-size:12px; color:#a5f3d0; margin:0;
+          font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; white-space:pre-wrap;
+          word-break:break-word; }
+    .remediation { border-left:3px solid var(--ok); padding-left:14px; }
+    .remediation p { color:#d1fae5; }
+    ul.refs { margin:0; padding-left:18px; } ul.refs li { margin:3px 0; }
+    a { color:var(--low); text-decoration:none; word-break:break-all; } a:hover { text-decoration:underline; }
+    .empty { text-align:center; color:var(--dim); padding:40px; border:1px dashed var(--border); border-radius:12px; }
+    footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--border);
+             color:var(--dim); font-size:11px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+
+    @media print {
+        body{background:#fff;color:#111} .wrap{max-width:none;padding:0}
+        .finding,.meta,.pill{background:#fff;border-color:#ccc;break-inside:avoid}
+        pre{background:#f6f8fa;color:#111;border-color:#ddd} .sect p{color:#333}
+        .remediation p{color:#065f46} a{color:#0366d6} h2{color:#444}
+    }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+    <div class="cover">
+        <div class="brand">PENTROID</div>
+        <h1>Mobile Application Security Assessment</h1>
+        <div class="sub">{{ project.name }} &mdash; {{ project.platform|capitalize }} &mdash; {{ analysis.analysis_type|replace("_"," ")|title }}</div>
+        <div class="meta-grid">
+            <div class="meta"><div class="k">Risk Score</div><div class="v {{ risk_class }}">{{ "%.1f"|format(analysis.risk_score or 0) }}<span style="font-size:12px;color:var(--dim)"> / 10</span></div></div>
+            <div class="meta"><div class="k">Total Findings</div><div class="v">{{ findings|length }}</div></div>
+            <div class="meta"><div class="k">Status</div><div class="v" style="font-size:14px">{{ analysis.status|title }}</div></div>
+            <div class="meta"><div class="k">Generated</div><div class="v" style="font-size:13px">{{ generated_at }}</div></div>
+        </div>
+    </div>
+
+    <h2>Executive Summary</h2>
+    <p style="color:#cbd5e1">
+        {% if findings %}
+            This assessment of <strong>{{ project.name }}</strong> identified
+            <strong>{{ findings|length }}</strong> finding(s) across
+            {{ category_counts|length }} categor{{ "y" if category_counts|length == 1 else "ies" }}.
+            {% if counts.critical or counts.high %}
+                <strong>{{ (counts.critical or 0) + (counts.high or 0) }}</strong> of these are rated
+                high severity or above and should be prioritised for remediation.
+            {% else %}
+                No high-severity issues were identified; remaining findings are informational or low impact.
+            {% endif %}
+            The overall risk score is <strong>{{ "%.1f"|format(analysis.risk_score or 0) }}/10</strong>,
+            driven primarily by the highest-severity finding rather than the raw count.
+        {% else %}
+            No findings were identified during this run. Note that a clean result reflects only the
+            checks that actually executed &mdash; review the analysis log to confirm no steps were
+            skipped due to missing tooling.
+        {% endif %}
+    </p>
+
+    <div class="dist" style="margin-top:20px">
+        {% for sev, count in counts.items() %}
+            {% if count %}
+            <div class="pill"><span class="dot" style="background:{{ severity_colors[sev] }}"></span>
+                {{ sev|title }} <span style="color:var(--dim)">{{ count }}</span></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% if findings %}
+    <h2>Findings Summary</h2>
+    <table class="summary">
+        <thead><tr><th style="width:52px">ID</th><th>Finding</th><th style="width:88px">Severity</th>
+            <th style="width:92px">Confidence</th><th style="width:92px">CWE</th></tr></thead>
+        <tbody>
+        {% for f in findings %}
+            <tr>
+                <td style="color:var(--dim);font-weight:700">{{ "%03d"|format(loop.index) }}</td>
+                <td><a href="#f{{ loop.index }}">{{ f.title }}</a>
+                    {% if f.file_path %}<div style="color:var(--dim);font-size:11px">{{ f.file_path }}{% if f.line_number %}:{{ f.line_number }}{% endif %}</div>{% endif %}</td>
+                <td><span class="sev-tag" style="color:{{ severity_colors[f.severity] }};border:1px solid {{ severity_colors[f.severity] }}">{{ f.severity }}</span></td>
+                <td style="color:var(--muted);font-size:12px">{{ f.confidence|default("medium")|title }}</td>
+                <td style="color:var(--muted);font-size:12px">{{ f.cwe_id or "&mdash;"|safe }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Detailed Findings</h2>
+    {% for f in findings %}
+    <div class="finding {{ f.severity }}" id="f{{ loop.index }}">
+        <div class="f-head">
+            <div>
+                <div class="f-id">FINDING {{ "%03d"|format(loop.index) }}</div>
+                <div class="f-title">{{ f.title }}</div>
+            </div>
+            <span class="sev-tag" style="color:{{ severity_colors[f.severity] }};border:1px solid {{ severity_colors[f.severity] }}">{{ f.severity }}</span>
+        </div>
+
+        <div class="f-tags">
+            <span class="tag">Confidence: {{ f.confidence|default("medium")|title }}</span>
+            {% if f.cvss_score %}<span class="tag">CVSS {{ f.cvss_score }}</span>{% endif %}
+            {% if f.cwe_id %}<span class="tag">{{ f.cwe_id }}</span>{% endif %}
+            {% if f.category %}<span class="tag">{{ f.category }}</span>{% endif %}
+            {% if f.owasp_mapping %}<span class="tag">OWASP {{ f.owasp_mapping }}</span>{% endif %}
+            {% if f.masvs_mapping %}<span class="tag">{{ f.masvs_mapping }}</span>{% endif %}
+            {% if f.mitre_mapping %}<span class="tag">MITRE {{ f.mitre_mapping }}</span>{% endif %}
+        </div>
+
+        {% if f.description %}<div class="sect"><h4>Description</h4><p>{{ f.description }}</p></div>{% endif %}
+        {% if f.impact %}<div class="sect"><h4>Impact</h4><p>{{ f.impact }}</p></div>{% endif %}
+        {% if f.affected_components %}
+        <div class="sect"><h4>Affected Components</h4><pre>{{ f.affected_components }}</pre></div>{% endif %}
+        {% if f.evidence %}<div class="sect"><h4>Technical Evidence</h4><pre>{{ f.evidence }}</pre></div>{% endif %}
+        {% if f.reproduction_steps %}
+        <div class="sect"><h4>Steps to Reproduce</h4><pre>{{ f.reproduction_steps }}</pre></div>{% endif %}
+        {% if f.cvss_vector %}
+        <div class="sect"><h4>CVSS v3.1 Vector</h4><pre>{{ f.cvss_vector }}</pre></div>{% endif %}
+        {% if f.recommendation %}
+        <div class="sect remediation"><h4 style="color:var(--ok)">Remediation</h4><p>{{ f.recommendation }}</p></div>{% endif %}
+        {% if f.references %}
+        <div class="sect"><h4>References</h4><ul class="refs">
+            {% for r in f.references %}<li><a href="{{ r }}">{{ r }}</a></li>{% endfor %}
+        </ul></div>{% endif %}
+    </div>
+    {% endfor %}
+    {% else %}
+        <h2>Findings</h2>
+        <div class="empty">No findings recorded for this analysis.</div>
+    {% endif %}
+
+    <footer>
+        <span>Pentroid v{{ pentroid_version }} &mdash; Mobile Application Security Platform</span>
+        <span>{{ project.name }} &middot; Analysis #{{ analysis.id }} &middot; {{ generated_at }}</span>
+    </footer>
+</div>
+</body>
+</html>

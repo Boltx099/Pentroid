@@ -1,0 +1,9 @@
+{
+  "plugin_id": "secrets_detection",
+  "name": "Secrets Detection",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Scans decompiled Java source and decoded resources for hardcoded API keys, tokens, private keys, and passwords.",
+  "entry_point": "plugin:SecretsDetectionPlugin",
+  "requires_device": false
+}

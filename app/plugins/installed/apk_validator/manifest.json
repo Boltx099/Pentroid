@@ -1,0 +1,9 @@
+{
+  "plugin_id": "apk_validator",
+  "name": "APK Validator",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Validates that a target file is a well-formed APK (valid ZIP, contains AndroidManifest.xml and classes.dex) before any further static analysis steps run.",
+  "entry_point": "plugin:ApkValidatorPlugin",
+  "requires_device": false
+}

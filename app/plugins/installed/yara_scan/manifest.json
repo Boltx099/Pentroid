@@ -1,0 +1,9 @@
+{
+  "plugin_id": "yara_scan",
+  "name": "YARA Scan",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Scans the raw APK against a bundled set of original YARA rules for common Android malware indicator strings (dynamic code loading, SMS abuse, overlay/accessibility abuse, anti-analysis checks).",
+  "entry_point": "plugin:YaraScanPlugin",
+  "requires_device": false
+}

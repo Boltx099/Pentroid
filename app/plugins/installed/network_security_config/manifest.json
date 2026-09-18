@@ -1,0 +1,9 @@
+{
+  "plugin_id": "network_security_config",
+  "name": "Network Security Config Analysis",
+  "version": "1.0.0",
+  "author": "Pentroid",
+  "description": "Parses res/xml/network_security_config.xml (via APKTool output) for cleartext traffic permissions and user-CA trust anchors that weaken TLS protection.",
+  "entry_point": "plugin:NetworkSecurityConfigPlugin",
+  "requires_device": false
+}
